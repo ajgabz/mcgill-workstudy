@@ -1,15 +1,12 @@
-from flask import Flask, request, session, g, redirect, url_for, render_template
 import psycopg2
+from flask import g
+from mcgill_workstudy import app
 from psycopg2.extras import DictCursor
 
-
-app = Flask(__name__)
-app.config.from_object('config')
 
 def connect_db():
     """Connects to the specific database."""
     conn = psycopg2.connect(dbname="aarongaba", user="aarongaba", password="")
-    #dict_cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     return conn
 
 def get_db():
@@ -24,17 +21,11 @@ def close_db(error):
     if hasattr(g, 'postgres_db'):
         g.postgres_db.close()
 
-@app.route("/")
-def index():
-    return "Hello world!"
-
-@app.route("/terms/")
-def show_terms():
-    db = get_db()
-    dict_cursor = db.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    dict_cursor.execute("SELECT * FROM Term")
+def query_db(query, args = ()):
+    """Fetches a cursor from the DB connection (which is created if need be) and performs the
+       given query.  The cursor is immediately closed thereafter. """
+    dict_cursor = get_db().cursor(cursor_factory=psycopg2.extras.DictCursor)
+    dict_cursor.execute(query, args)
     entries = dict_cursor.fetchall()
-    return render_template('show_entries.html', entries=entries)
-
-
-
+    dict_cursor.close()
+    return entries

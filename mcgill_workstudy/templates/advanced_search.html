@@ -1,0 +1,109 @@
+{% extends "layout.html" %}
+
+{% block child_css_libraries %}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">Filter By</div>
+            <div class="panel-body">
+                <div class="checkbox"><label><input type="checkbox" value="">Student ID</label></div>
+                <div class="checkbox"><label><input type="checkbox" value="">Faculty</label></div>
+                <div class="checkbox"><label><input type="checkbox" value="">Term</label></div>
+                <div class="checkbox"><label><input type="checkbox" value="">Decision</label></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">Search Criteria</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label>Student ID</label>
+                    <input class="form-control" type="number" maxlength="9" size="9">
+                    <label>Term</label>
+                    <br />
+                    <label>Term</label>
+                    <br />
+                    <select class="form control">
+                        <option>Fall 2016</option>
+                        <option>Winter 2017</option>
+                        <option>Summer 2017</option>
+                    </select>
+                    <br />
+                    <label>Decision</label>
+                    <br />
+                        <select class="form control">
+                            <option>Accepted</option>
+                            <option>Pending</option>
+                            <option>Refused</option>
+                            <option>Revoked</option>
+                        </select>
+                    <br />
+                    <label>ABC</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3"></div>
+</div>
+
+<div class="row"></div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Search Criteria</div>
+            <div class="panel-body">
+                <form role="role"></form>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label>Student ID</label>
+                        <input class="form-control" type="number" maxlength="9" size="9">
+                        <br />
+                    </div>
+                    <div class="col-lg-2">
+                        <label>Decision</label>
+                        <br />
+                        <select class="form control">
+                            <option>Accepted</option>
+                            <option>Pending</option>
+                            <option>Refused</option>
+                            <option>Revoked</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3">
+                        <label>Faculty</label>
+                        <br />
+                        <select class="form control">
+                            <option>AG - Faculty of Agric Environ Sci</option>
+                            <option>AR - Faculty of Arts</option>
+                            <option>AS - Interfaculty, B.A. & Sc.</option>
+                            <option>CE - Centre for Continuing Ed </option>
+                            <option>DE - Faculty of Dentistry </option>
+                            <option>ED - Faculty of Education
+                            <option>EN - Faculty of Engineering
+                            <option>GR - Graduate Studies</option>
+                            <option>LW - Faculty of Law</option>
+                            <option>ME - Faculty of Medicine</option>
+                            <option>MG - Faculty of Management</option>
+                            <option>MU - Schulich School of Music</option>
+                            <option>NU - School of Nursing</option>
+                            <option>PO - School of Phys & Occ Therapy</option>
+                            <option>RS - Faculty of Religious Studies</option>
+                            <option>SC - Faculty of Science</option>
+                            <option>XX - Unspecified</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block child_js_libraries %}{% endblock %}

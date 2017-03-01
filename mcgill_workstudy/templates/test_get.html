@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id="target" action="..." method="get">
+    Field 1: <input type="text" value="" id="field1" name="field1"> --- Enable Field 1: <input type="checkbox" onclick="toggleState('field1')">
+    <br>
+    Field 2: <input type="text" value="" id="field2" name="field2"> --- Enable Field 2: <input type="checkbox" onclick="toggleState('field2')">
+    <br>
+    <input type="submit">
+</form>
+<script src="../static/lib/jquery/jquery.min.js"></script>
+<script>
+function toggleState(text) {
+    document.getElementById(text).disabled = !document.getElementById(text).disabled;
+}
+</script>
+</body>
+
+</html>

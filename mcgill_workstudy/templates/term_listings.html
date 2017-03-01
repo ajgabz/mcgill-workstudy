@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block child_css_libraries %}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Term</th>
+                        <th>Term Starts</th>
+                        <th>Term Ends</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entry in entries %}
+                    <tr><td>{{ entry.semesterterm }} {{entry.termyear}}</td>
+                        <td>{{ entry.termstart }}</td>
+                        <td>{{ entry.termend }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-lg-3"></div>
+</div>
+{% endblock %}
+
+{% block child_js_libraries %}{% endblock %}

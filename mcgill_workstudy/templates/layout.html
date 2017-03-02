@@ -15,18 +15,19 @@
     {% endif %}
 
     <!-- Bootstrap Core CSS -->
+    <link href="{{ url_for('static', filename='lib/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="../static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="../static/lib/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/metisMenu/metisMenu.min.css') }}" rel="stylesheet">
 
     {% block child_css_libraries %}{% endblock %}
 
     <!-- Custom CSS -->
-    <link href="../static/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../static/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='lib/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -153,19 +154,19 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="../static/lib/jquery/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='lib/jquery/jquery.min.js') }}"></script>
 
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../static/lib/bootstrap/js/bootstrap.min.js"></script>
-
+    <script src="{{ url_for('static', filename='lib/bootstrap/js/bootstrap.min.js') }}"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../static/lib/metisMenu/metisMenu.min.js"></script>
+    <script src="{{ url_for('static', filename='lib/metisMenu/metisMenu.min.js') }}"></script>
+
 
 
     <!-- Custom Theme JavaScript -->
-    <script src="../static/js/sb-admin-2.min.js"></script>
+    <script src="{{ url_for('static', filename='js/sb-admin-2.min.js') }}"></script>
 
     {% block child_js_libraries %}{% endblock %}
 

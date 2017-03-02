@@ -7,6 +7,7 @@ from psycopg2.extras import DictCursor
 def connect_db():
     """Connects to the specific database."""
     conn = psycopg2.connect(dbname="aarongaba", user="aarongaba", password="")
+    conn.autocommit = True
     return conn
 
 def get_db():
@@ -24,8 +25,13 @@ def close_db(error):
 def query_db(query, args = ()):
     """Fetches a cursor from the DB connection (which is created if need be) and performs the
        given query.  The cursor is immediately closed thereafter. """
+    print("Checkpoint 0")
     dict_cursor = get_db().cursor(cursor_factory=psycopg2.extras.DictCursor)
+    print("Checkpoint 1")
+    print("Query: " + str(query))
+    print("Args: " + str(args))
     dict_cursor.execute(query, args)
+    print("Checkpoint 2")
     entries = dict_cursor.fetchall()
     dict_cursor.close()
     return entries

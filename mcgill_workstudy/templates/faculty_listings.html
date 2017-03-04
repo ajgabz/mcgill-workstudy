@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-
+{% set page_header = "Term Information" %}
 {% block child_css_libraries %}{% endblock %}
 
 {% block content %}
@@ -16,7 +16,10 @@
                 </thead>
                 <tbody>
                 {% for entry in entries %}
-                    <tr><td>{{ entry.facultyid }}</td><td>{{ entry.description }}</td></tr>
+                    <tr>
+                        <td>{{ entry.faculty_id }}</td>
+                        <td>{{ entry.description }}</td>
+                    </tr>
                 {% endfor %}
                 </tbody>
             </table>

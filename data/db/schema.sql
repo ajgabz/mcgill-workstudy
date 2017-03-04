@@ -1,11 +1,11 @@
 -- Remove tables if they already exist;
-DROP TABLE IF EXISTS Application;
-DROP TABLE IF EXISTS Student;
-DROP TABLE IF EXISTS Faculty;
-DROP TABLE IF EXISTS Term;
+DROP TABLE IF EXISTS workstudy_application;
+DROP TABLE IF EXISTS student;
+DROP TABLE IF EXISTS faculty;
+DROP TABLE IF EXISTS term;
 
 -- Remove enumerated types if they already exist;
-DROP TYPE IF EXISTS SEMESTER;
+DROP TYPE IF EXISTS SEASON;
 DROP TYPE IF EXISTS DECISION;
 
 -- After clearing the database of the following tables and types involved
@@ -13,16 +13,14 @@ DROP TYPE IF EXISTS DECISION;
 
 -- All McGill students have a nine-digit student ID
 -- In PostgreSQL, the INTEGER data type supports up to 10-digit student IDs
-CREATE TABLE Student (
-	StudentID INTEGER NOT NULL,
-	PRIMARY KEY (StudentID)
+CREATE TABLE student (
+  id INTEGER PRIMARY KEY
 );
 
 
-CREATE TABLE Faculty (
-	FacultyID CHAR(2) NOT NULL,
-	Description VARCHAR(32) NOT NULL,
-	PRIMARY KEY (FacultyID) 
+CREATE TABLE faculty (
+  id          CHAR(2) PRIMARY KEY,
+  description VARCHAR(32) NOT NULL
 );
 
 
@@ -30,16 +28,19 @@ CREATE TABLE Faculty (
 --  For example, the 2016 calendar year begins with Winter 2016, followed by Summer 2016,
 --  and then Fall 2016.
 
+--  For the sake of completeness, we are adding the 'spring' option.
+
 -- This ordering is crucial for proper SQL ordering.
-CREATE TYPE SEMESTER AS ENUM ('Winter', 'Summer', 'Fall');
+CREATE TYPE SEASON AS ENUM ('Winter', 'Spring', 'Summer', 'Fall');
 
 
-CREATE TABLE Term (
-	SemesterTerm SEMESTER NOT NULL,
-	TermYear INTEGER NOT NULL,
-	TermStart DATE NOT NULL,
-	TermEnd DATE NOT NULL,
-	PRIMARY KEY (SemesterTerm, TermYear)
+CREATE TABLE term (
+  id SERIAL PRIMARY KEY,
+	academic_season SEASON NOT NULL,
+	year INTEGER NOT NULL,
+	start_date DATE NOT NULL,
+	end_date DATE NOT NULL,
+  UNIQUE (academic_season, year)
 );
 
 
@@ -51,16 +52,16 @@ CREATE TYPE DECISION AS ENUM ('Accepted', 'Pending', 'Refused', 'Revoked');
 --  permitted to be null.  Hopefully, this matter will be rectified as to have all information
 --  available.
 
-CREATE TABLE Application (
-	StudentID INTEGER NOT NULL,
-	FacultyID CHAR(2) NOT NULL,
-	SemesterTerm SEMESTER NOT NULL,
-	TermYear INTEGER NOT NULL,
-	ApplicationDecision DECISION NOT NULL,
-	WorkStart DATE,
-	WorkEnd DATE,
-	PRIMARY KEY (StudentID, SemesterTerm, TermYear),
-	FOREIGN KEY (StudentID) REFERENCES Student,
-	FOREIGN KEY (FacultyID) REFERENCES Faculty,
-	FOREIGN KEY (SemesterTerm, TermYear) REFERENCES Term
+CREATE TABLE workstudy_application (
+	student_id INTEGER,
+	faculty_id CHAR(2) NOT NULL,
+	term_id INTEGER,
+	status DECISION NOT NULL,
+	start_date DATE,
+	end_date DATE,
+	PRIMARY KEY (student_id, term_id),
+	FOREIGN KEY (student_id) REFERENCES student(id),
+	FOREIGN KEY (faculty_id) REFERENCES faculty(id),
+	FOREIGN KEY (term_id) REFERENCES term(id)
 );
+

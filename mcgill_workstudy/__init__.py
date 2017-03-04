@@ -1,14 +1,14 @@
 from flask import Flask
 from flask_reggie import Reggie
 
-app = Flask(__name__)
-app.config['DEBUG'] = True
+#app = Flask(__name__)
+#app.config['DEBUG'] = True
+
+app = Flask(__name__, instance_relative_config=True)
+app.config.from_object('config')
+app.config.from_pyfile('config.py')
 
 Reggie(app)
-
-#app = Flask(__name__, instance_relative_config=True)
-#app.config.from_object('config')
-#app.config.from_pyfile('config.py')
 
 #db.Model.metadata.reflect(db.engine)
 

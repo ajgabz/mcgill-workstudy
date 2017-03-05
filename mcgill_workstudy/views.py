@@ -12,7 +12,7 @@ def fetch_faculties_and_terms():
              searchable_faculties = get_searchable_faculties())
     except psycopg2.Error as e:
         print "Executed Code."
-        return dict(searchable_terms = None, searchable_faculties = None)
+        return dict(searchable_terms = [], searchable_faculties = [])
 
 
 @app.route('/')

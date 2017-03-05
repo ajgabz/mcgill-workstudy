@@ -8,7 +8,7 @@ if os.environ.get('HEROKU') is None:
     app.config.from_object('config.DevelopmentConfig')
 else:
     app.config.from_object('config')
-    app.config['POSTGRES_CONNECTION_URL'] = os.environ["DATABASE_URL"]
+    app.config['POSTGRES_CONNECTION_URI'] = os.environ["DATABASE_URL"]
 
 
 Reggie(app)

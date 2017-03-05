@@ -1,6 +1,4 @@
 DEBUG = True
 
 #PsycoPg2 connection variables
-DB_NAME = "aarongaba"
-DB_USERNAME = "aarongaba"
-DB_PSWD = ""
+POSTGRES_CONNECTION_URI = "postgresql://aarongaba@localhost/aarongaba"

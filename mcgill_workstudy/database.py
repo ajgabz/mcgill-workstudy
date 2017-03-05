@@ -6,7 +6,8 @@ from psycopg2.extras import DictCursor
 
 def connect_db():
     """Connects to the specific database."""
-    conn = psycopg2.connect(dbname=app.config['DB_NAME'], user=app.config['DB_USERNAME'], password=app.config['DB_PSWD'])
+    conn = psycopg2.connect(app.config['POSTGRES_CONNECTION_URI'])
+    #conn = psycopg2.connect(dbname=app.config['DB_NAME'], user=app.config['DB_USERNAME'], password=app.config['DB_PSWD'])
     conn.autocommit = True
     return conn
 

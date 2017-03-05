@@ -1,6 +1,11 @@
-DEBUG = False
+class Config(object):
+    DEBUG = False
+    TESTING = False
+    POSTGRES_CONNECTION_URI = ""
 
-#PsycoPg2 connection variables
-DB_NAME = "DATABASE NAME GOES HERE"
-DB_USERNAME = "USERNAME GOES HERE"
-DB_PSWD = "PASSWORD GOES HERE"
+class DevelopmentConfig(Config):
+    POSTGRES_CONNECTION_URI = "postgresql://aarongaba@localhost/aarongaba"
+    DEBUG = True
+
+class TestingConfig(Config):
+    TESTING = True

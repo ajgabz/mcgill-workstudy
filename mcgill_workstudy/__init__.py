@@ -1,10 +1,15 @@
+import os
 from flask import Flask
 from flask_reggie import Reggie
 
+app = Flask(__name__)
 
-app = Flask(__name__, instance_relative_config=True)
-app.config.from_object('config')
-app.config.from_pyfile('config.py')
+if os.environ.get('HEROKU') is None:
+    app.config.from_object('config.DevelopmentConfig')
+else:
+    app.config.from_object('config')
+    app.config['POSTGRES_CONNECTION_URL'] = os.environ["DATABASE_URL"]
+
 
 Reggie(app)
 

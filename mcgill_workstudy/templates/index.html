@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% set page_header = "Welcome!" %}
+{% block child_css_libraries %}{% endblock %}
+
+{% block content %}
+<div class="row">
+<div class="col-lg-12">
+    <p class="lead">This web service presents an easily searchable version of the Work Study Acceptance List.</p>
+    <p class="lead">Full Disclosure: This web service is <strong>NOT</strong> affliated with McGill University in any way and its
+    creation is only for pedagogical purposes. </p>
+
+    <p class="lead">The information contained here comes from the
+        <a href="http://www.is.mcgill.ca/studentaid/workstudy/StudentList.htm"><strong>OFFICIAL</strong> Work Study acceptance list</a>.</p>
+
+    <p class="lead">From the official McGill Work Study page:</p>
+    <blockquote>Remember, Work Study is a financial aid program. <br />
+        Students must ensure that they have been accepted into Work Study <strong>BEFORE</strong>
+    applying for a Work Study position. <br /> <br />
+        Students who do not meet Work Study eligibility criteria or who are unable to demonstrate financial
+        need have been refused. <br /> <br />
+        Our office remains available for consultation should you wish to discuss your application
+        results. Contact Work Study at 398-7297 or email <a href="mailto:work.study@mcgill.ca">work.study@mcgill.ca</a>
+        for information. <br /> <br />
+
+        Employers, please consult the <a href="{{ url_for('faculties_info_page') }}">legend</a> to determine the student's faculty
+        and your reimbursement rate.
+
+    </blockquote>
+    <p class="lead"></p>
+    <p class="lead"></p>
+
+    <p class="lead">  </p>
+</div>
+{% endblock %}
+
+{% block child_js_libraries %}{% endblock %}

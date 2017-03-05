@@ -22,27 +22,27 @@ def close_db(error):
     if hasattr(g, 'postgres_db'):
         g.postgres_db.close()
 
+
 def workstudy_point_query(student_id = None, faculty_id = None, term_season = None, term_year = None,
                           status = None, start_date = None, end_date = None):
+    """A wrapper function around the workstudy_point_query stored procedure in PostgreSQL."""
 
-    return query_db('workstudy_point_query', args = (student_id, faculty_id, term_season, term_year, status, start_date,
-                                                     end_date), is_stored_procedure = True)
+    return run_db_procedure('workstudy_point_query',
+                            args = [student_id, faculty_id, term_season, term_year, status, start_date, end_date])
 
 def get_searchable_terms(chronological_order = None):
-    return query_db('get_searchable_terms', args = (chronological_order), is_stored_procedure = True)
+    """A wrapper function around the get_searchable_terms stored procedure in PostgreSQL."""
+    return run_db_procedure('get_searchable_terms', args = [chronological_order])
 
 def get_searchable_faculties():
     """ Retrieves a list of faculty IDs, along with their descriptions, that are housed in the database."""
-    return query_db('SELECT * FROM searchable_faculties')
+    return run_db_procedure('get_searchable_faculties')
 
-def query_db(query, args = (), is_stored_procedure = False):
+def run_db_procedure(procedure_name, args = None):
     """Fetches a cursor from the DB connection (which is created if need be) and performs the
        given query/stored procedure.  The cursor is immediately closed thereafter. """
     cur = get_db().cursor(cursor_factory=psycopg2.extras.DictCursor)
-    if (is_stored_procedure):
-        cur.callproc(query, args)
-    else:
-        cur.execute(query, args)
+    cur.callproc(procedure_name, args)
     entries = cur.fetchall()
     cur.close()
     return entries

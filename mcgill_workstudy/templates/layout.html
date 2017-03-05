@@ -9,9 +9,9 @@
 
 
     {% if page_title %}
-    <title>{{ page_title }} - McGill University Workstudy Acceptance List</title>
+    <title>{{ page_title }} - McGill University Work Study Acceptance List</title>
     {% else %}
-    <title>McGill University Workstudy Acceptance List</title>
+    <title>McGill University Work Study Acceptance List</title>
     {% endif %}
 
     <!-- Bootstrap Core CSS -->
@@ -51,7 +51,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">McGill University - Workstudy Acceptance List</a>
+                <a class="navbar-brand" href="{{ url_for('home') }}">McGill University - Work Study Acceptance List</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -66,9 +66,9 @@
                             <ul class="nav nav-second-level">
                                <li class="sidebar-search">
                             <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
+                                <input type="number" class="form-control" placeholder="Student ID. . ." id = "SearchBarStudentID">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">
+                                    <button class="btn btn-default" type="button" id="idSearchButton">
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </span>
@@ -81,47 +81,27 @@
                         <li>
                             <a href="#"><i class="fa fa-calendar fa-fw"></i> Search By Term<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                               <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
+                               {% for term in searchable_terms %}
+                               <li><a href="{{ url_for('search_by_term', year = term.term_year, season = term.term_season) }}">{{ term.term_season }} {{ term.term_year }}</a></li>
+                               {% endfor %}
                             </ul>
                         </li>
 
                         <li>
                             <a href="#"><i class="fa fa-building-o fa-fw"></i> Search By Faculty<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                               <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
+                                {% for faculty in searchable_faculties %}
+                                <li><a href="{{ url_for('search_by_faculty', faculty_id = faculty.faculty_id) }}">{{ faculty.faculty_description }}</a></li>
+                                {% endfor %}
                             </ul>
                         </li>
 
                         <li>
-                            <a href="forms.html"><i class="fa fa-search fa-fw"></i> Advanced Search</a>
+                            <a href="{{ url_for('render_advanced_search_form') }}"><i class="fa fa-search fa-fw"></i> Advanced Search</a>
                         </li>
 
                         <li>
-                            <a href="forms.html"><i class="fa fa-table fa-fw"></i> Term Information</a>
-                        </li>
-
-                        <li>
-                            <a href="forms.html"><i class="fa fa-table fa-fw"></i> Faculty Information</a>
+                            <a href="{{ url_for('faculties_info_page') }}"><i class="fa fa-table fa-fw"></i> Faculty Information</a>
                         </li>
 
                         <li>
@@ -129,7 +109,7 @@
                         </li>
 
                         <li>
-                            <a href="forms.html"><i class="fa fa-question fa-fw"></i> About</a>
+                            <a href="{{ url_for('about') }}"><i class="fa fa-question fa-fw"></i> About</a>
                         </li>
 
                     </ul>
@@ -167,6 +147,22 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="{{ url_for('static', filename='js/sb-admin-2.min.js') }}"></script>
+
+    <script>
+
+        window.onload = function() {
+            document.getElementById("idSearchButton").onclick = function(){
+                studentID = document.getElementById("SearchBarStudentID").value;
+                if (studentID == "" || studentID == null) {
+                 alert("Please enter a Student ID number and then try again.");
+                } else {
+                 window.open("/student/" + studentID);
+                }
+            }
+        }
+
+
+    </script>
 
     {% block child_js_libraries %}{% endblock %}
 

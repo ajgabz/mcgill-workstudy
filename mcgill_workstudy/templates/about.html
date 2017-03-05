@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% set page_header = "About this Web Service" %}
+{% block child_css_libraries %}{% endblock %}
+
+{% block content %}
+<div class="row">
+<div class="col-lg-12">
+    <p class="lead">The "unofficial" McGill University Work Study Application Database and Web Client were
+        created by me, <a href="http://cs.mcgill.ca/~agaba/">Aaron Gaba</a> (B.Sc, Computer Science '17) using: </p>
+    <ul>
+        <li>Flask, for the backend</li>
+        <li>PostgreSQL, for the database</li>
+        <li>pl/pgSQL, for the database's stored procedures</li>
+        <li>Bootstrap, jQuery, and DataTables, for the frontend</li>
+    </ul>
+    <br />
+    <p class="lead">Feeling adventurous and/or curious about this system's inner workings?  Then check out
+        <a href="https://github.com/ajgabz/mcgill-workstudy/">this project's GitHub page</a>.</p>
+    <br />
+    <p class="lead">Feel free to <a href="mailto:aaron.gaba@mail.mcgill.ca">e-mail me</a> with your thoughts, questions,
+    and opinions about this web service. :-)</p>
+</div>
+{% endblock %}
+
+{% block child_js_libraries %}{% endblock %}

@@ -23,12 +23,12 @@
                 <tbody>
                 {% for entry in entries %}
                     <tr>
-                        <td>{{ entry.studentid }}</td>
-                        <td>{{ entry.facultyid }}</td>
-                        <td>{{ entry.semesterterm}} {{ entry.termyear }} </td>
-                        <td>{% if entry.workstart %} {{ entry.workstart }} {% endif %}</td>
-                        <td>{% if entry.workend %} {{ entry.workend }} {% endif %}</td>
-                        <td>{{ entry.applicationdecision }}</td>
+                        <td>{{ entry.student_id }}</td>
+                        <td>{{ entry.faculty_id }}</td>
+                        <td>{{ entry.term_season }} {{ entry.term_year }} </td>
+                        <td>{% if entry.start_date %} {{ entry.start_date }} {% endif %}</td>
+                        <td>{% if entry.end_date %} {{ entry.end_date }} {% endif %}</td>
+                        <td>{{ entry.status }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>
@@ -46,7 +46,7 @@
 
 <script>
     $(document).ready(function() {
-        $('#dataTables-example').DataTable({responsive: true});
+        $('#dataTables-example').DataTable({responsive: true, searching: false});
     });
 </script>
 {% endblock %}

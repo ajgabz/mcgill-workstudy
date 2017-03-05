@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath mcgill_workstudy __init__:app
+web: gunicorn mcgill_workstudy:app

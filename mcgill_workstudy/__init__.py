@@ -13,8 +13,6 @@ else:
 
 Reggie(app)
 
-print(app.config['POSTGRES_CONNECTION_URI'])
-
 import mcgill_workstudy.views
 import mcgill_workstudy.database
 import mcgill_workstudy.searchForm

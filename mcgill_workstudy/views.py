@@ -11,9 +11,6 @@ def fetch_faculties_and_terms():
         return dict(searchable_terms = get_searchable_terms(chronological_order = True),
              searchable_faculties = get_searchable_faculties())
     except psycopg2.Error as e:
-        print "*********************************************************************"
-        print "Database Error: " + e.message
-        print "*********************************************************************"
         return dict(searchable_terms = [], searchable_faculties = [])
 
 

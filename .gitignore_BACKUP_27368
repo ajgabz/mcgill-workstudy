@@ -1,0 +1,7 @@
+venv/
+<<<<<<< HEAD
+=======
+.idea/
+*.pyc
+
+>>>>>>> initial_backend

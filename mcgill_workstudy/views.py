@@ -46,9 +46,9 @@ def search_by_term(year, season):
 ### The next two methods deal with handling multi-term searching in this web site.
 @app.route('/advanced_search/')
 def render_advanced_search_form():
-    return render_template('service_message.html', page_header = "Advanced Search Unavailable",
-                           message = "This feature has not yet been implemented.")
-    #return render_template('advanced_search.html')
+    #return render_template('service_message.html', page_header = "Advanced Search Unavailable",
+    #                       message = "This feature has not yet been implemented.")
+    return render_template('advanced_search.html')
 
 
 

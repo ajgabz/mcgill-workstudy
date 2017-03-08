@@ -18,7 +18,5 @@ app.controller('formController', function($scope) {
             $scope.selectedSeason = match[1];
             $scope.selectedYear = match[2];
         }
-        console.log($scope.selectedSeason);
-        console.log($scope.selectedYear);
     }
 });

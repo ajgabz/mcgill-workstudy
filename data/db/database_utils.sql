@@ -1,0 +1,1 @@
+CREATE USER readingClient WITH PASSWORD 'default' NOCREATEDB N

@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% set page_header = "Faculty Information" %}
+{% block child_css_libraries %}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Faculty Code</th>
+                        <th>Faculty</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entry in searchable_faculties %}
+                    <tr>
+                        <td>{{ entry.faculty_id }}</td>
+                        <td>{{ entry.faculty_description }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-lg-3"></div>
+</div>
+<div class="row"></div>
+<div class="row">
+    <div class="col-lg-12">
+        <p class="lead">Please note that the Centre for Continuing Education is <strong>not</strong> eligible for Work Study.</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block child_js_libraries %}{% endblock %}
